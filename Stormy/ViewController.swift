@@ -46,20 +46,6 @@ class ViewController: UIViewController {
         let currentWeather = CurrentWeather(temperature: 56.0, humidity: 1.0, precipitationProbability: 1.0, summary: "Wet and rainy!", icon: icon)
         
         display(currentWeather)
-        
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(forecastAPIKey)")
-        
-        let forecastURL = NSURL(string: "37.8267,-122.423", relativeToURL: baseURL)
-        
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: configuration)
-        
-        let request = NSURLRequest(URL: forecastURL!)
-        let dataTask = session.dataTaskWithRequest(request) {
-            data, response, error in
-            print(data!)
-        }
-        dataTask.resume()
 
     }
 
