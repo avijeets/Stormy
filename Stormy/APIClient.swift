@@ -8,6 +8,9 @@
 
 import Foundation
 
+public let TRENetworkingErrorDomain = "com.avijeets.Stormy.NetworkingError"
+public let MissingHTTPResponseError = 10
+
 typealias JSON = [String : AnyObject]
 typealias JSONTaskCompletion = (JSON?, NSHTTPURLResponse?, NSError?) -> Void
 typealias JSONTask = NSURLSessionDataTask
@@ -25,4 +28,34 @@ protocol APIClient {
     
     func JSONTaskWithRequest(request: NSURLRequest, completion: JSONTaskCompletion) -> JSONTask
     func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult -> Void)
+}
+
+extension APIClient {
+    func JSONTaskWithRequest(request: NSURLRequest, completion: JSONTaskCompletion) -> JSONTask {
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            guard let HTTPResponse = response as? NSHTTPURLResponse else {
+                let userInfo = [
+                    NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment: "")
+                ]
+                
+                let error = NSError(domain: TRENetworkingErrorDomain, code: MissingHTTPResponseError, userInfo: userInfo)
+                completion(nil, nil, error)
+                return
+            }
+            
+            if data == nil {
+                if let error = error {
+                    completion(nil, HTTPResponse, error)
+                }
+            }
+            else {
+                switch HTTPResponse.statusCode {
+                    case 200:
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                }
+            }
+        }
+        
+        return task
+    }
 }
