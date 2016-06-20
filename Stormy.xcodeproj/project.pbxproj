@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A1805031D179F940077487E /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1805021D179F940077487E /* ForecastClient.swift */; };
 		8A3B9E1B1D0851900057B7D7 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B9E1A1D0851900057B7D7 /* CurrentWeather.swift */; };
 		8A3B9E1E1D0852D40057B7D7 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B9E1D1D0852D40057B7D7 /* WeatherIcon.swift */; };
 		8A94C0E01D092A1B003ACB94 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A94C0DF1D092A1B003ACB94 /* APIClient.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A1805021D179F940077487E /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		8A3B9E1A1D0851900057B7D7 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		8A3B9E1D1D0852D40057B7D7 /* WeatherIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		8A94C0DF1D092A1B003ACB94 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				97F14FF11CB9EEB20065EE08 /* LaunchScreen.storyboard */,
 				97F14FF41CB9EEB20065EE08 /* Info.plist */,
 				8A94C0DF1D092A1B003ACB94 /* APIClient.swift */,
+				8A1805021D179F940077487E /* ForecastClient.swift */,
 			);
 			path = Stormy;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				97F14FEB1CB9EEB20065EE08 /* ViewController.swift in Sources */,
 				8A3B9E1E1D0852D40057B7D7 /* WeatherIcon.swift in Sources */,
 				8A3B9E1B1D0851900057B7D7 /* CurrentWeather.swift in Sources */,
+				8A1805031D179F940077487E /* ForecastClient.swift in Sources */,
 				8A94C0E01D092A1B003ACB94 /* APIClient.swift in Sources */,
 				97F14FE91CB9EEB20065EE08 /* AppDelegate.swift in Sources */,
 			);
