@@ -51,11 +51,31 @@ extension APIClient {
             else {
                 switch HTTPResponse.statusCode {
                     case 200:
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String : AnyObject]
+                            completion(json, HTTPResponse, nil)
+                        } catch let error as NSError {
+                            completion(nil, HTTPResponse, error)
+                    }
+                default: print ("Received HTTP Response: \(HTTPResponse.statusCode) - not handled")
                 }
             }
         }
         
         return task
+    }
+    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult -> Void) {
+        let task = JSONTaskWithRequest(request) { json, response, error in
+            guard let json = json else {
+                if let error = error {
+                    completion(.Failure(error))
+                }
+                else {
+                    // TODO: Implement Error Handling
+                }
+                return
+            }
+        }
+        task.resume()
     }
 }
