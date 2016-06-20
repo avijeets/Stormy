@@ -21,14 +21,22 @@ enum APIResult<T> {
     case Failure(ErrorType)
 }
 
+protocol JSONDecodable {
+    init?(JSON: [String : AnyObject])
+}
+
+protocol Endpoint {
+    var baseURL: NSURL { get }
+    var path: String { get }
+    var request: NSURLRequest { get }
+}
+
 protocol APIClient {
     var configuration: NSURLSessionConfiguration { get }
     var session: NSURLSession { get }
     
-    init(config: NSURLSessionConfiguration)
-    
     func JSONTaskWithRequest(request: NSURLRequest, completion: JSONTaskCompletion) -> JSONTask
-    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void)
+    func fetch<T: JSONDecodable>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void)
 }
 
 extension APIClient {
