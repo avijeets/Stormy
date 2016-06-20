@@ -10,13 +10,14 @@ import Foundation
 
 public let TRENetworkingErrorDomain = "com.avijeets.Stormy.NetworkingError"
 public let MissingHTTPResponseError = 10
+public let UnexpectedResponseError = 20
 
 typealias JSON = [String : AnyObject]
 typealias JSONTaskCompletion = (JSON?, NSHTTPURLResponse?, NSError?) -> Void
 typealias JSONTask = NSURLSessionDataTask
 
-enum APIResult {
-    case Success(CurrentWeather)
+enum APIResult<T> {
+    case Success(T)
     case Failure(ErrorType)
 }
 
@@ -27,7 +28,7 @@ protocol APIClient {
     init(config: NSURLSessionConfiguration)
     
     func JSONTaskWithRequest(request: NSURLRequest, completion: JSONTaskCompletion) -> JSONTask
-    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult -> Void)
+    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void)
 }
 
 extension APIClient {
@@ -64,7 +65,7 @@ extension APIClient {
         
         return task
     }
-    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult -> Void) {
+    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void) {
         let task = JSONTaskWithRequest(request) { json, response, error in
             guard let json = json else {
                 if let error = error {
@@ -74,6 +75,13 @@ extension APIClient {
                     // TODO: Implement Error Handling
                 }
                 return
+            }
+            if let value = parse(json) {
+                completion(.Success(value))
+            }
+            else {
+                let error = NSError(domain: TRENetworkingErrorDomain, code: UnexpectedResponseError, userInfo: nil)
+                completion(.Failure(error))
             }
         }
         task.resume()
