@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    lazy var forecastAPIClient = ForecastAPIClient(APIKey: "a5ac8b31565256bcd15dc3c6dcf9c0eb")
+    lazy var forecastAPIClient = ForecastAPIClient(APIKey: "YOUR_API_KEY")
     let coordinate = Coordinate(latitude: 37.8267, longitude: -122.423)
     
     override func viewDidLoad() {
