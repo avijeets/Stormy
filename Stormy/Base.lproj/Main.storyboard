@@ -57,6 +57,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZe-cj-oOs">
                                 <rect key="frame" x="279" y="52" width="43" height="43"/>
                                 <state key="normal" image="refresh"/>
+                                <connections>
+                                    <action selector="refreshWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n25-1t-xBX"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYb-VB-nw1">
                                 <rect key="frame" x="361" y="411" width="39" height="21"/>
