@@ -75,21 +75,23 @@ extension APIClient {
     }
     func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void) {
         let task = JSONTaskWithRequest(request) { json, response, error in
-            guard let json = json else {
-                if let error = error {
-                    completion(.Failure(error))
+            dispatch_async(dispatch_get_main_queue()) {
+                guard let json = json else {
+                    if let error = error {
+                        completion(.Failure(error))
+                    }
+                    else {
+                        // TODO: Implement Error Handling
+                    }
+                    return
+                }
+                if let value = parse(json) {
+                    completion(.Success(value))
                 }
                 else {
-                    // TODO: Implement Error Handling
+                    let error = NSError(domain: TRENetworkingErrorDomain, code: UnexpectedResponseError, userInfo: nil)
+                    completion(.Failure(error))
                 }
-                return
-            }
-            if let value = parse(json) {
-                completion(.Success(value))
-            }
-            else {
-                let error = NSError(domain: TRENetworkingErrorDomain, code: UnexpectedResponseError, userInfo: nil)
-                completion(.Failure(error))
             }
         }
         task.resume()

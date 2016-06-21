@@ -34,19 +34,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private let forecastAPIKey = "a5ac8b31565256bcd15dc3c6dcf9c0eb"
+    lazy var forecastAPIClient = ForecastAPIClient(APIKey: "a5ac8b31565256bcd15dc3c6dcf9c0eb")
+    let coordinate = Coordinate(latitude: 37.8267, longitude: -122.423)
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let icon = WeatherIcon.PartlyCloudyDay.image
-        let currentWeather = CurrentWeather(temperature: 56.0, humidity: 1.0, precipitationProbability: 1.0, summary: "Wet and rainy!", icon: icon)
-        
-        display(currentWeather)
-
+        forecastAPIClient.fetchCurrentWeather(coordinate) { result in
+            switch result {
+                case .Success(let currentWeather):
+                    self.display(currentWeather)
+                case .Failure(let error as NSError):
+                    self.showAlert("Unable to retrieve forecast", message: error.localizedDescription)
+                default:
+                    break
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +66,12 @@ class ViewController: UIViewController {
         currentWeatherIcon.image = weather.icon
     }
 
-
+    func showAlert(title: String, message: String?, style: UIAlertControllerStyle = .Alert) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 }
 
