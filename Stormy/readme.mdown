@@ -1,0 +1,8 @@
+Stormy
+----
+
+Fairly simple iOS app that tracks the weather at a certain location (based on latitude and longitude) and displays humidity and precipitation levels. Building this helped me learn more about working with Swift+JSON while also working with the Forecast API.
+
+:+1: :cloud: :+1:
+
+If you want to try it out for yourself, add your Forecast.io API key into the `ViewController.swift` file. If you want to change the location, change the latitude and longitude double values to the ones of your choosing. Currently, they represent Alcatraz in San Francisco. 
