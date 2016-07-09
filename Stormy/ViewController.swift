@@ -26,7 +26,6 @@ extension CurrentWeather {
 }
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var currentHumidityLabel: UILabel!
     @IBOutlet weak var currentPrecipitationLabel: UILabel!
