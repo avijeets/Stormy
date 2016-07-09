@@ -8,7 +8,7 @@
 
 import Foundation
 
-public let TRENetworkingErrorDomain = "com.avijeets.Stormy.NetworkingError"
+public let TRENetworkingErrorDomain = "com.avijeets.Stormy.NetworkingError" // change depending on your Bundle ID
 public let MissingHTTPResponseError = 10
 public let UnexpectedResponseError = 20
 
@@ -59,18 +59,18 @@ extension APIClient {
             }
             else {
                 switch HTTPResponse.statusCode {
-                    case 200:
+                    case 200: // request successful
                         do {
                             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String : AnyObject]
                             completion(json, HTTPResponse, nil)
                         } catch let error as NSError {
                             completion(nil, HTTPResponse, error)
                     }
-                default: print ("Received HTTP Response: \(HTTPResponse.statusCode) - not handled")
+                    default:
+                        print ("Received HTTP Response: \(HTTPResponse.statusCode) - not handled")
                 }
             }
         }
-        
         return task
     }
     func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void) {

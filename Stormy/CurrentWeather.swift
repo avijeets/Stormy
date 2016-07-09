@@ -17,6 +17,7 @@ struct CurrentWeather {
     let icon: UIImage
 }
 
+//taking objects from JSON
 extension CurrentWeather: JSONDecodable {
     init?(JSON: [String : AnyObject]) {
         guard let temperature = JSON["temperature"] as? Double,

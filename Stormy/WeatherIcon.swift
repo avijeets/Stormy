@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//raw values for images
 enum WeatherIcon: String {
     case ClearDay = "clear-day"
     case ClearNight = "clear-night"
@@ -39,6 +40,7 @@ enum WeatherIcon: String {
     }
 }
 
+//getting said image
 extension WeatherIcon {
     var image: UIImage {
         return UIImage(named: self.rawValue)!

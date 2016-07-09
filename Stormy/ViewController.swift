@@ -8,6 +8,7 @@
 
 import UIKit
 
+//returning the three categories: temp, humidity, precipitation
 extension CurrentWeather {
     var temperatureString: String {
         return "\(Int(temperature))º"
@@ -34,20 +35,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    /*** ENTER API KEY HERE ***/
     lazy var forecastAPIClient = ForecastAPIClient(APIKey: "YOUR_API_KEY")
     let coordinate = Coordinate(latitude: 37.8267, longitude: -122.423)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         fetchCurrentWeather()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    //getting weather
     func fetchCurrentWeather() {
         forecastAPIClient.fetchCurrentWeather(coordinate) { result in
             self.toggleRefreshAnimation(false)
@@ -60,9 +61,9 @@ class ViewController: UIViewController {
                 break
             }
         }
-
     }
     
+    //updating text views and image icons
     func display(weather: CurrentWeather) {
         currentTemperatureLabel.text = weather.temperatureString
         currentPrecipitationLabel.text = weather.precipitationProbabilityString
@@ -70,7 +71,8 @@ class ViewController: UIViewController {
         currentSummaryLabel.text = weather.summary
         currentWeatherIcon.image = weather.icon
     }
-
+    
+    //alert control
     func showAlert(title: String, message: String?, style: UIAlertControllerStyle = .Alert) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -82,7 +84,6 @@ class ViewController: UIViewController {
         toggleRefreshAnimation(true)
         fetchCurrentWeather()
     }
-    
     func toggleRefreshAnimation(on: Bool) {
         refreshButton.hidden = on
         if on {

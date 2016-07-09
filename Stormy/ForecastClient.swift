@@ -13,6 +13,7 @@ struct Coordinate {
     let longitude: Double
 }
 
+//dealing with API endpoint
 enum Forecast: Endpoint {
     case Current(token: String, coordinate: Coordinate)
     
@@ -55,7 +56,6 @@ final class ForecastAPIClient: APIClient {
         
         fetch(request, parse: { (json) -> CurrentWeather? in
             //Parse from JSON response to CurrentWeather
-            
             if let currentWeatherDictionary = json["currently"] as? [String : AnyObject] {
                 return CurrentWeather(JSON: currentWeatherDictionary)
             }
