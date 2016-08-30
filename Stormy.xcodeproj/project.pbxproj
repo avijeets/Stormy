@@ -52,6 +52,15 @@
 			name = "Weather Model";
 			sourceTree = "<group>";
 		};
+		8AD13A551D762F480035799C /* API Client */ = {
+			isa = PBXGroup;
+			children = (
+				8A94C0DF1D092A1B003ACB94 /* APIClient.swift */,
+				8A1805021D179F940077487E /* ForecastClient.swift */,
+			);
+			name = "API Client";
+			sourceTree = "<group>";
+		};
 		97F14FDC1CB9EEB20065EE08 = {
 			isa = PBXGroup;
 			children = (
@@ -71,15 +80,14 @@
 		97F14FE71CB9EEB20065EE08 /* Stormy */ = {
 			isa = PBXGroup;
 			children = (
+				8AD13A551D762F480035799C /* API Client */,
 				8A3B9E1C1D0852BE0057B7D7 /* Weather Model */,
-				97F14FE81CB9EEB20065EE08 /* AppDelegate.swift */,
 				97F14FEA1CB9EEB20065EE08 /* ViewController.swift */,
+				97F14FE81CB9EEB20065EE08 /* AppDelegate.swift */,
 				97F14FEC1CB9EEB20065EE08 /* Main.storyboard */,
-				97F14FEF1CB9EEB20065EE08 /* Assets.xcassets */,
 				97F14FF11CB9EEB20065EE08 /* LaunchScreen.storyboard */,
+				97F14FEF1CB9EEB20065EE08 /* Assets.xcassets */,
 				97F14FF41CB9EEB20065EE08 /* Info.plist */,
-				8A94C0DF1D092A1B003ACB94 /* APIClient.swift */,
-				8A1805021D179F940077487E /* ForecastClient.swift */,
 			);
 			path = Stormy;
 			sourceTree = "<group>";

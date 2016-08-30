@@ -2,8 +2,8 @@
 //  WeatherIcon.swift
 //  Stormy
 //
-//  Created by Avijeet Sachdev on 6/8/16.
-//  Copyright © 2016 Treehouse. All rights reserved.
+//  Created by Avijeet Sachdev on 6/9/16.
+//  Copyright © 2016 Avijeet Sachdev. All rights reserved.
 //
 
 import Foundation
